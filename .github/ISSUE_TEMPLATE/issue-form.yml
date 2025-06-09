@@ -1,12 +1,3 @@
----
-name: issue-form
-about: 팀 관련 Issue를 생성해주세요. 생성된 Issue는 Jira와 연동됩니다
-title: ''
-labels: help wanted
-assignees: ''
-
----
-
 name: 'MeshManager Issue 생성'
 description: '팀 관련 Issue를 생성해주세요. 생성된 Issue는 Jira와 연동됩니다.'
 labels: [order]
