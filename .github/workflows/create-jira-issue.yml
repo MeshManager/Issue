@@ -50,10 +50,10 @@ jobs:
           summary: "${{ github.event.issue.title }}"
           description: "${{ steps.md2jira.outputs.output-text }}"
           fields: |
-            ${{ steps.issue-parser.outputs.issueparser_연관이슈키 != '' && format('{"parent": {"key": "{0}"}}', steps.issue-parser.outputs.issueparser_연관이슈키) || '{}' }}
+            ${{ steps.issue-parser.outputs.issueparser_relatedKey  != '' && format('{"parent": {"key": "{0}"}}', steps.issue-parser.outputs.issueparser_relatedKey ) || '{}' }}
 
       - name: Log created issue
-        run: echo "Jira Issue ${{ steps.issue-parser.outputs.issueparser_연관이슈키 }}/${{ steps.create.outputs.issue }} was created"
+        run: echo "Jira Issue ${{ steps.issue-parser.outputs.issueparser_relatedKey  }}/${{ steps.create.outputs.issue }} was created"
 
       - name: Checkout develop code
         uses: actions/checkout@v4
