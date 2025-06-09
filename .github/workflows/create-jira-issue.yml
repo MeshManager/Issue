@@ -61,3 +61,28 @@ jobs:
           actions: "update-issue"
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "${{ steps.create.outputs.issue }} ${{ github.event.issue.title }}"
+
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v2.1.0
+        with:
+          method: chat.postMessage  # Slack API 메서드 사용
+          token: ${{ secrets.SLACK_BOT_TOKEN }}  # Bot 토큰 필요
+          payload: |
+            channel: ${{ secrets.SLACK_CHANNEL_ID }}  # 채널 ID
+            text: "📢 New Jira Issue Created: ${{ steps.create.outputs.issue }}"
+            blocks:
+              - type: section
+                text:
+                  type: mrkdwn
+                  text: |
+                    *📢 New Jira Issue Created*
+                    > *Jira Key*: <${{ secrets.JIRA_BASE_URL }}/browse/${{ steps.create.outputs.issue }}|${{ steps.create.outputs.issue }}>
+                    > *Title*: ${{ github.event.issue.title }}
+                    > *GitHub Issue*: <${{ github.event.issue.html_url }}|#${{ github.event.issue.number }}>
+              - type: actions
+                elements:
+                  - type: button
+                    text:
+                      type: plain_text
+                      text: View Jira Issue
+                    url: "${{ secrets.JIRA_BASE_URL }}/browse/${{ steps.create.outputs.issue }}"
