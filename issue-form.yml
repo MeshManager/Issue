@@ -1,0 +1,52 @@
+name: 'MeshManager Issue 생성'
+description: '팀 관련 Issue를 생성해주세요. 생성된 Issue는 Jira와 연동됩니다.'
+labels: [order]
+title: 'Issue 이름을 작성해주세요'
+body:
+  - type: input
+    id: description
+    attributes:
+      label: 'Issue 이름'
+      description: 'Issue에 대해서 간략히 설명해주세요'
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: '상세 내용(Details)'
+      description: 'Issue에 대해서 자세히 설명해주세요'
+      value: |
+        - About Details
+    validations:
+      required: true
+
+  - type: textarea
+    id: tasks
+    attributes:
+      label: '체크리스트(Tasks)'
+      description: '해당 Issue에 대해 필요한 작업목록을 작성해주세요'
+      value: |
+        - [ ] Task1
+        - [ ] Task2
+    validations:
+      required: true
+
+  - type: input
+    id: relatedKey
+    attributes:
+      label: '관련 작업 Ticket Number'
+      description: '관련 작업의 Ticket Number를 기입해주세요'
+      placeholder: 'VSXD-00'
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: '참조(References)'
+      description: '해당 Issue에 관련된 레퍼런스를 참조해주세요'
+      value: |
+        - Reference1
+    validations:
+      required: false
